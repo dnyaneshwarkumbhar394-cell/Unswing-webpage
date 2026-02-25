@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNswing Coming Soon</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI', sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+color:white;
+background:black;
+}
+
+/* ===== BLUR BACKGROUND ===== */
+.bg{
+position:fixed;
+inset:0;
+background:url("gaming.jpg") center/cover no-repeat;
+filter:blur(18px) brightness(.35);
+z-index:-2;
+}
+
+/* animated glow overlay */
+.bg::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(270deg,#00f0ff,#7b5cff,#ff00ff);
+background-size:600% 600%;
+animation:glow 18s infinite linear;
+opacity:.18;
+}
+
+@keyframes glow{
+0%{background-position:0%}
+100%{background-position:100%}
+}
+
+/* ===== CENTER CONTENT ===== */
+.container{
+text-align:center;
+padding:40px;
+}
+
+/* LOGO STYLE */
+.logo{
+font-size:70px;
+font-weight:bold;
+background:linear-gradient(45deg,#00f0ff,#7b5cff);
+-webkit-background-clip:text;
+color:transparent;
+text-shadow:0 0 40px rgba(0,255,255,.6);
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+}
+
+.subtitle{
+margin-top:15px;
+font-size:18px;
+color:#aaa;
+letter-spacing:2px;
+}
+
+/* COMING SOON TEXT */
+.coming{
+margin-top:60px;
+font-size:34px;
+color:#00ffff;
+letter-spacing:3px;
+text-shadow:0 0 25px #00ffff;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:1}
+50%{opacity:.4}
+100%{opacity:1}
+}
+
+/* COUNTDOWN */
+.timer{
+margin-top:30px;
+font-size:28px;
+font-weight:bold;
+letter-spacing:2px;
+}
+
+/* FOLLOW TEXT */
+.follow{
+position:absolute;
+bottom:40px;
+width:100%;
+text-align:center;
+font-size:18px;
+color:#ff00ff;
+letter-spacing:2px;
+text-shadow:0 0 15px #ff00ff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+<div class="logo">UNswing</div>
+<div class="subtitle">Next-Gen AI Gaming</div>
+
+<div class="coming">COMING SOON</div>
+<div class="timer" id="timer"></div>
+</div>
+
+<div class="follow">Follow For More 🔥</div>
+
+<script>
+
+/* ===== COUNTDOWN TO 25 MARCH ===== */
+const target = new Date("March 25, 2026 00:00:00").getTime();
+const timer = document.getElementById("timer");
+
+setInterval(()=>{
+const now = new Date().getTime();
+const diff = target - now;
+
+if(diff <= 0){
+timer.innerHTML = "🚀 LAUNCHED!";
+return;
+}
+
+const d = Math.floor(diff / (1000*60*60*24));
+const h = Math.floor((diff / (1000*60*60)) % 24);
+const m = Math.floor((diff / (1000*60)) % 60);
+const s = Math.floor((diff / 1000) % 60);
+
+timer.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+
+},1000);
+
+</script>
+
+</body>
+</html>
